@@ -1,0 +1,85 @@
+{
+  "base_propensity": {
+    "value": 0.58,
+    "description": "送料無料のために追加購入を検討する顧客の割合",
+    "source": "Shopify調査 2026: 58%の消費者が送料無料のため追加購入を検討",
+    "range": [0.40, 0.70],
+    "uncertainty": "medium"
+  },
+  "jump_success_rate": {
+    "value": 0.80,
+    "description": "追加購入を検討した顧客が実際に閾値を超える確率",
+    "source": "Shopify調査 2026: 80%が最低購入額を満たそうとする",
+    "range": [0.60, 0.90],
+    "uncertainty": "low"
+  },
+  "overspend_mean": {
+    "value": 0.10,
+    "description": "閾値超過時の平均超過率（閾値の何%分追加で買うか）",
+    "source": "推定: 平均して閾値+10%程度の注文に",
+    "range": [0.05, 0.20],
+    "uncertainty": "medium"
+  },
+  "overspend_std": {
+    "value": 0.05,
+    "description": "超過率の標準偏差",
+    "source": "推定",
+    "range": [0.03, 0.10],
+    "uncertainty": "high"
+  },
+  "cart_abandonment_base": {
+    "value": 0.39,
+    "description": "送料が原因のカート離脱率（ベースライン）",
+    "source": "Statista 2025: 39%が送料でカート離脱",
+    "range": [0.30, 0.50],
+    "uncertainty": "low"
+  },
+  "cart_abandonment_reduction": {
+    "value": 0.25,
+    "description": "送料無料閾値設定による離脱率低減効果",
+    "source": "推定: 閾値以上の顧客は離脱率25%低下",
+    "range": [0.15, 0.35],
+    "uncertainty": "high"
+  },
+  "goal_gradient_coefficient": {
+    "value": 1.5,
+    "description": "目標勾配効果の係数（閾値に近いほど追加購入意欲増）",
+    "source": "行動経済学理論: Goal Gradient Effect",
+    "range": [1.0, 2.0],
+    "uncertainty": "high"
+  },
+  "segment_factors": {
+    "toC_new": {
+      "value": 0.9,
+      "description": "新規個人顧客のジャンプ傾向係数",
+      "rationale": "様子見傾向あり"
+    },
+    "toC_repeat": {
+      "value": 1.2,
+      "description": "リピート個人顧客のジャンプ傾向係数",
+      "rationale": "ブランド信頼あり、追加購入しやすい"
+    },
+    "toB": {
+      "value": 0.8,
+      "description": "法人顧客のジャンプ傾向係数",
+      "rationale": "価格感応度低い、既に高単価"
+    }
+  },
+  "distance_factors": {
+    "gap_ratio_over_1": {
+      "value": 0.3,
+      "description": "閾値まで現在金額の100%以上離れている場合の係数",
+      "rationale": "2倍以上離れているとジャンプ困難"
+    },
+    "gap_ratio_0.5_to_1": {
+      "value": 0.5,
+      "description": "閾値まで現在金額の50-100%離れている場合の係数",
+      "rationale": "1.5-2倍離れている"
+    },
+    "gap_ratio_under_0.5": {
+      "formula": "1.0 - (gap_ratio * 0.5)",
+      "description": "閾値まで現在金額の50%未満の場合",
+      "rationale": "近いほど高確率でジャンプ"
+    }
+  }
+}

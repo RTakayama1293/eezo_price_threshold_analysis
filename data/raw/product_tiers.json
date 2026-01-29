@@ -1,0 +1,168 @@
+{
+  "current_distribution": {
+    "description": "現状のEEZO toC顧客の価格帯分布（推定）",
+    "source": "2025年12月実績ベースの推定",
+    "tiers": {
+      "tier_0_5000": {
+        "label": "～5,000円",
+        "min": 0,
+        "max": 5000,
+        "share": 0.10,
+        "avg_amount": 3500,
+        "customer_type": "試し買い・単品購入",
+        "margin_rate": 0.25
+      },
+      "tier_5000_10000": {
+        "label": "5,000円～10,000円",
+        "min": 5000,
+        "max": 10000,
+        "share": 0.35,
+        "avg_amount": 7500,
+        "customer_type": "ライトユーザー",
+        "margin_rate": 0.28
+      },
+      "tier_10000_15000": {
+        "label": "10,000円～15,000円",
+        "min": 10000,
+        "max": 15000,
+        "share": 0.30,
+        "avg_amount": 12500,
+        "customer_type": "中核顧客・リピーター（ジャンプ候補）",
+        "margin_rate": 0.30,
+        "jump_candidate": true
+      },
+      "tier_15000_20000": {
+        "label": "15,000円～20,000円",
+        "min": 15000,
+        "max": 20000,
+        "share": 0.15,
+        "avg_amount": 17500,
+        "customer_type": "優良顧客（ジャンプ候補）",
+        "margin_rate": 0.32,
+        "jump_candidate": true
+      },
+      "tier_20000_plus": {
+        "label": "20,000円以上",
+        "min": 20000,
+        "max": null,
+        "share": 0.10,
+        "avg_amount": 28000,
+        "customer_type": "ヘビーユーザー・法人",
+        "margin_rate": 0.35
+      }
+    }
+  },
+  "proposed_tiers": {
+    "description": "提案する3段階価格帯構成",
+    "tiers": [
+      {
+        "name": "エントリー",
+        "target_amount": 5000,
+        "shipping_treatment": "送料込み",
+        "shipping_cost_absorbed": 800,
+        "margin_impact": "割損（顧客獲得コスト）",
+        "target_customer": "新規・試し買い",
+        "example_products": ["単品チーズ", "お試しセット", "小容量日本酒"]
+      },
+      {
+        "name": "スタンダード",
+        "target_amount": 10000,
+        "shipping_treatment": "送料込み",
+        "shipping_cost_absorbed": 1200,
+        "margin_impact": "微損～収支均衡",
+        "target_customer": "リピーター・中間層",
+        "example_products": ["定番セット", "季節商品", "中容量詰め合わせ"]
+      },
+      {
+        "name": "プレミアム",
+        "target_amount": 20000,
+        "shipping_treatment": "実質送料無料（粗利吐き出し）",
+        "shipping_cost_absorbed": 1500,
+        "margin_impact": "商品粗利で十分回収",
+        "target_customer": "ヘビーユーザー・贈答需要",
+        "example_products": ["プレミアムセット", "ギフトボックス", "希少食材セット"]
+      }
+    ]
+  },
+  "shipping_costs": {
+    "description": "実際の配送コスト構造",
+    "base_cost": {
+      "frozen": 1500,
+      "refrigerated": 1200,
+      "ambient": 800
+    },
+    "regional_surcharge": {
+      "hokkaido": 0,
+      "tohoku": 200,
+      "kanto": 400,
+      "chubu": 400,
+      "kinki": 500,
+      "chugoku": 600,
+      "shikoku": 600,
+      "kyushu": 700,
+      "okinawa": 1500
+    },
+    "average_shipping_cost": 1350,
+    "current_shipping_fee": 1500,
+    "shipping_margin": 150
+  },
+  "scenarios": {
+    "baseline": {
+      "name": "現状維持",
+      "threshold": null,
+      "shipping_fee": 1500,
+      "description": "全注文に送料1,500円課金"
+    },
+    "threshold_20k": {
+      "name": "20,000円閾値",
+      "threshold": 20000,
+      "shipping_fee_above": 0,
+      "shipping_fee_below": 1500,
+      "description": "20,000円以上で送料無料"
+    },
+    "tiered": {
+      "name": "段階的閾値",
+      "tiers": [
+        {"threshold": 10000, "shipping_fee": 800},
+        {"threshold": 20000, "shipping_fee": 0}
+      ],
+      "shipping_fee_below_10k": 1500,
+      "description": "10,000円以上で送料割引、20,000円以上で無料"
+    }
+  },
+  "jump_target_products": {
+    "description": "ジャンプ促進用の追加購入商品（8,000円～10,000円帯）",
+    "products": [
+      {
+        "name": "鮭とば・おつまみセット",
+        "price": 3000,
+        "category": "水産加工品",
+        "rationale": "日持ちする、追加しやすい"
+      },
+      {
+        "name": "黒松内チーズ詰め合わせ",
+        "price": 4000,
+        "category": "乳製品",
+        "rationale": "ギフト映え、単品でも満足"
+      },
+      {
+        "name": "純米大吟醸 720ml",
+        "price": 3500,
+        "category": "酒類",
+        "rationale": "常温保存可、重量感"
+      },
+      {
+        "name": "いくら醤油漬け 250g",
+        "price": 5000,
+        "category": "水産品",
+        "rationale": "高単価だが人気商品"
+      },
+      {
+        "name": "エゾシカジャーキーセット",
+        "price": 2500,
+        "category": "畜産加工品",
+        "rationale": "話題性、ギフト向け"
+      }
+    ]
+  }
+}
